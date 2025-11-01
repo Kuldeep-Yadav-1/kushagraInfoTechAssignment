@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import validateEmail from "../utils/validateEmail";
 import { UseContextApp } from "../utils/UseContextApp";
+import Swal from "sweetalert2";
 
 function Updateuser() {
   const [email, setEmail] = useState("");
@@ -46,7 +47,7 @@ function Updateuser() {
       return;
     }
     if (!validateEmail(email)) {
-      alert("email is not vallid");
+      // alert("email is not vallid");
       Swal.fire({
         icon: "error",
         title: "Oops...",

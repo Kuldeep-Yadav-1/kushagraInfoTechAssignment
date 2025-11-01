@@ -3,6 +3,7 @@ import validateEmail from "../utils/validateEmail";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UseContextApp } from "../utils/UseContextApp";
+import Swal from "sweetalert2";
 
 function Adminsignin() {
   const [email, setEmail] = useState("");
@@ -43,7 +44,7 @@ function Adminsignin() {
         email: email,
         password: password,
       });
-      alert(res?.data?.message || "admin login successfully");
+      // alert(res?.data?.message || "admin login successfully");
       Swal.fire({
         icon: "success",
         title: "Success",

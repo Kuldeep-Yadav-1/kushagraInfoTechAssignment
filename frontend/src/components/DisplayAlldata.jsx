@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UseContextApp } from "../utils/UseContextApp";
+import Swal from "sweetalert2";
 
 function DisplayAlldata() {
   const [userData, setUserData] = useState([]);
