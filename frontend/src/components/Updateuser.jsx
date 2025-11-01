@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import validateEmail from "../utils/validateEmail";
-import {UseContextApp} from "../utils/UseContextApp";
+import { UseContextApp } from "../utils/UseContextApp";
 
 function Updateuser() {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ function Updateuser() {
   const [post, setPost] = useState("");
   const [loading, setLoading] = useState("");
   const [userData, setUserData] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //   const { user_id } = useParams("id");
   const { user_id } = useParams();
@@ -37,11 +37,22 @@ function Updateuser() {
 
   const handleUpdate = async () => {
     if (!name.trim() || !post.trim() || !email.trim() || !password.trim()) {
-      alert("all field are required");
+      // alert("all field are required");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "all field are required",
+      });
       return;
     }
     if (!validateEmail(email)) {
       alert("email is not vallid");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "email is not vallid",
+      });
+
       return;
     }
 
@@ -56,10 +67,20 @@ function Updateuser() {
           password: password,
         }
       );
-      alert(res?.data?.message || "user data updated successfully");
+      // alert(res?.data?.message || "user data updated successfully");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: res?.data?.message || "user data updated successfully",
+      });
     } catch (error) {
       // console.log("error");
-      alert(error?.response?.data?.message || "error from frontend");
+      // alert(error?.response?.data?.message || "error from frontend");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error?.response?.data?.message || "error from frontend",
+      });
     } finally {
       setLoading(false);
     }

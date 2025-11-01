@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {UseContextApp} from "../utils/UseContextApp";
+import { UseContextApp } from "../utils/UseContextApp";
 
 function DisplayAlldata() {
   const [userData, setUserData] = useState([]);
@@ -31,10 +31,21 @@ function DisplayAlldata() {
       const res = await axios.post(`http://localhost:3008/api/delete-user`, {
         user_id: user_id,
       });
-      alert(res?.data?.message || "deleted successfully");
+      // alert(res?.data?.message || "deleted successfully");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: res?.data?.message || "deleted successfully",
+      });
+
       fetchAllData();
     } catch (error) {
-      alert(error?.response?.data?.message || "error from frontend");
+      // alert(error?.response?.data?.message || "error from frontend");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error?.response?.data?.message || "error from frontend",
+      });
     } finally {
       setLoading(false);
     }

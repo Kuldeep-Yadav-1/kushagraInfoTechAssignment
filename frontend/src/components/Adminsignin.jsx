@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import validateEmail from "../utils/validateEmail";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {UseContextApp} from "../utils/UseContextApp";
+import { UseContextApp } from "../utils/UseContextApp";
 
 function Adminsignin() {
   const [email, setEmail] = useState("");
@@ -20,11 +20,20 @@ function Adminsignin() {
 
   const handleSignin = async () => {
     if (!email.trim() || !password.trim()) {
-      alert("all field are required");
+      // alert("all field are required");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "all field are required",
+      });
       return;
     }
     if (!validateEmail(email)) {
-      alert("email is not vallid");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "email is not vallid",
+      });
       return;
     }
 
@@ -35,6 +44,11 @@ function Adminsignin() {
         password: password,
       });
       alert(res?.data?.message || "admin login successfully");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: res?.data?.message || "admin login successfully",
+      });
       setCurrentuser(res?.data?.user);
       JSON.stringify(sessionStorage.setItem("user", res?.data?.user));
       setLoadingData(false);
@@ -44,7 +58,12 @@ function Adminsignin() {
       }, 2000);
     } catch (error) {
       // console.log("error");
-      alert(error?.response?.data?.message || "error from frontend");
+      // alert(error?.response?.data?.message || "error from frontend");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error?.response?.data?.message || "error from frontend",
+      });
     } finally {
       setLoading(false);
     }
