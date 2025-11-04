@@ -12,9 +12,18 @@ export const AppProvider = ({ children }) => {
     setLoggedIn(JSON.parse(sessionStorage.getItem("user")) ? true : false);
     setLoadingData(false);
   }, []);
+
+
+  const logout = () =>{
+    setLoadingData(true)
+    sessionStorage.removeItem("user");
+    setCurrentuser(null)
+    setLoadingData(false)
+  }
   return (
     <createApp.Provider
       value={{
+        logout,
         currentUser,
         setCurrentuser,
         loggedIn,
