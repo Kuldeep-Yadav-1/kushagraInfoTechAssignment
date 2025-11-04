@@ -70,8 +70,8 @@ function Updateuser() {
       );
       // alert(res?.data?.message || "user data updated successfully");
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
+        icon: "success",
+        title: "success...",
         text: res?.data?.message || "user data updated successfully",
       });
     } catch (error) {
